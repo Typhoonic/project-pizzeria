@@ -53,7 +53,6 @@
   };
 
   class Product {
-
     constructor(id, data) {
       const thisProduct = this;
       thisProduct.id = id;
@@ -82,6 +81,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -134,11 +134,23 @@
           const option = param.options[optionId];
           const defaultOption = option.default;
 
+          const optHtmlSelector = '.' + paramId + '-' + optionId
+          const htmlProductImage = thisProduct.imageWrapper.querySelector(optHtmlSelector)
+
           if (selected.includes(optionId) && !defaultOption) {
             price += option.price;
           } else if (!selected.includes(optionId) && defaultOption) {
             price -= option.price;
           }
+
+          if (htmlProductImage) {
+            if (selected.includes(optionId)) {
+              htmlProductImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              htmlProductImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+
         }
       }
 
