@@ -331,11 +331,10 @@
       const thisCart = this;
 
       const generatedHtml = templates.cartProduct(menuProduct);
-      thisCart.generatedDOM = utils.createDOMFromHTML(generatedHtml);
-      thisCart.dom.productList += thisCart.generatedDOM;
-
-      const menuCart = document.querySelector(select.containerOf.cart);
-      menuCart.appendChild(thisCart.generatedDOM);
+      const generatedDOM = utils.createDOMFromHTML(generatedHtml);
+      console.log(thisCart.dom.productList)
+      console.log(generatedDOM)
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
